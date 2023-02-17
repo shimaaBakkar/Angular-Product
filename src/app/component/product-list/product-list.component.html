@@ -1,0 +1,51 @@
+<!--
+<div class="card m-3" style="width: 18rem;" *ngFor="let prd of prdlist">
+  <img [src]="prd.image" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{prd.name}}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Description : {{prd.description}}</li>
+    <li class="list-group-item">Price : {{prd.price}} L.E</li>
+    <li class="list-group-item">
+      <ng-container [ngSwitch]="prd.count" class="txt2">
+                <div *ngSwitchCase="0">out of stock</div>
+                <div *ngSwitchCase="1">Last one item</div>
+                <div *ngSwitchCase="2">Last 2 item</div>
+                <div *ngSwitchDefault="">{{prd.count}}</div>
+              </ng-container>
+    </li>
+    <li class="list-group-item">Rate : {{prd.rate}} stars</li>
+  </ul>
+</div> -->
+
+
+<br>
+<div class="card col-5 m-2" *ngFor="let prd of prdlist" [class.bg-danger]="prd.count==0">
+    <h3 class="p-3">{{prd.name}}</h3>
+    <div class="cardcontainer">
+        <div class="photo">
+            <img [src]="prd.image">
+            <div class="photos">{{prd.description}}</div>
+        </div>
+        <div class="content m-3">
+            <p class="txt4">Rate : {{prd.rate}} stars</p>
+            <p class="txt4">Date : {{prd.createdAt| date: 'MMMM YYYY'}}</p>
+            <p class="txt5">Price : {{prd.price | currency:'EGP'}}</p>
+            <p class="txt2">
+            <ng-container [ngSwitch]="prd.count" class="m-5 txt2">
+              <div *ngSwitchCase="0">out of stock</div>
+              <!-- ng-style="{ 'background-color': person.email == selectedPerson.email ? 'lightgray' : ' '}" //background-color is a style -->
+              <div *ngSwitchCase="1">Last one item</div>
+              <div *ngSwitchCase="2">Last 2 item</div>
+              <div *ngSwitchDefault="">{{prd.count}}</div>
+            </ng-container>
+          </p>
+        </div>
+        <div class="footer m-3">
+              <a class="waves-effect waves-light btn" href="#" [class.bg-danger]="prd.count==0">Add to cart</a>
+              <!-- <a id="heart"><span class="like"><i class="fab fa-gratipay"></i>Like</span></a> -->
+        </div>
+    </div>
+</div>
+
